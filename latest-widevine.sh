@@ -41,7 +41,10 @@ STAGINGDIR="$TMP/widevine-staging"
 # Work out the latest Widevine version
 ## Google's current file tends to lie. 4.10.1196.0 is the latest version as of the 6th of December 2018
 ## Feel free to run this script as `$ WIDEVINE_VERSION=4.10.1196.0 ./latest-widevine.sh`
-WIDEVINE_VERSION="${WIDEVINE_VERSION:-$($SILENT_DL https://dl.google.com/widevine-cdm/current.txt)}"
+#WIDEVINE_VERSION="${WIDEVINE_VERSION:-$($SILENT_DL https://dl.google.com/widevine-cdm/current.txt)}"
+wget https://dl.google.com/widevine-cdm/versions.txt
+WIDEVINE_VERSION="${WIDEVINE_VERSION:-$(tail -n 1 versions.txt)}"
+#WIDEVINE_VERSION=4.10.1440.19
 #WIDEVINE_VERSION=4.10.1146.0
 
 # Error out if $CDMVERISON is unset, e.g. because previous command failed
