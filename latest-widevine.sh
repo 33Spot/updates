@@ -7,12 +7,14 @@ available () {
   command -v "$1" >/dev/null 2>&1
 }
 
+UA=\ --user-agent\ ""Mozilla\/5.0\ \(Windows\ NT\ 6\.1\;\ Win64\;\ x64\;\ rv\:45\.0\)\ Gecko\/20100101\ Firefox\/45\.0""
+
 # Make sure we have wget or curl
 if available wget; then
-  SILENT_DL="wget -qO-"
-  LOUD_DL="wget"
+  SILENT_DL="wget $UA -qO-"
+  LOUD_DL="wget $UA"
 elif available curl; then
-  SILENT_DL="curl -s"
+  SILENT_DL="curl -sL"
   LOUD_DL="curl -O"
 else
   echo "Install wget or curl" >&2
