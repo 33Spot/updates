@@ -3,11 +3,12 @@
 available () {
   command -v $1 >/dev/null 2>&1
 }
+UA=\ --user-agent\ ""Mozilla\/5.0\ \(Windows\ NT\ 6\.1\;\ Win64\;\ x64\;\ rv\:45\.0\)\ Gecko\/20100101\ Firefox\/45\.0""
 
 # Make sure we have wget or curl
 if available wget; then
-  SILENT_DL="wget -qO-"
-  LOUD_DL="wget"
+  SILENT_DL="wget $UA -qO-"
+  LOUD_DL="wget $UA"
 elif available curl; then
   SILENT_DL="curl -sL"
   LOUD_DL="curl -O"
@@ -32,7 +33,7 @@ case $(uname -m) in
 esac
 
 # Work out the VERSION
-VERSION=$($SILENT_DL http://www.adobe.com/software/flash/about/ | grep -FA2 'Chromium-based browsers - PPAPI' | grep -Eo '([0-9]+\.){3}[0-9]+' | tail -n1)
+VERSION=$($SILENT_DL https://www.adobe.com/software/flash/about/ | grep -FA2 'Chromium-based browsers - PPAPI' | grep -Eo '([0-9]+\.){3}[0-9]+' | tail -n1)
 
 # Error out if $VERISON is unset, e.g. because previous command failed
 if [ -z "$VERSION" ]; then
@@ -63,14 +64,14 @@ mkdir -p "$STAGINGDIR$PPAPI_FLASH_INSTALL_DIR"
 cd "$STAGINGDIR"
 
 # Now get the tarball
-$LOUD_DL "http://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_ppapi_linux.${ARCH}.tar.gz"
+$LOUD_DL "https://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_ppapi_linux.${ARCH}.tar.gz"
 
 # Extract the contents of the Google Chrome binary package
 tar xf flash_player_ppapi_linux.${ARCH}.tar.gz -C "$STAGINGDIR$PPAPI_FLASH_INSTALL_DIR"
 chmod -R u+w,go+r-w,a-s .
 #-----------------------------------------------------------------------------------------------------------
 # Now get the tarball
-$LOUD_DL "http://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_npapi_linux.${ARCH}.tar.gz"
+$LOUD_DL "https://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_npapi_linux.${ARCH}.tar.gz"
 
 # Extract the contents of the Google Chrome binary package
 tar xf flash_player_npapi_linux.${ARCH}.tar.gz -C "$STAGINGDIR$PPAPI_FLASH_INSTALL_DIR"
