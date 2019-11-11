@@ -13,9 +13,9 @@ UA=\ --user-agent\ ""Mozilla\/5.0\ \(Windows\ NT\ 6\.1\;\ Win64\;\ x64\;\ rv\:45
 if available wget; then
   SILENT_DL="wget $UA -qO-"
   LOUD_DL="wget $UA"
-elif available curl; then
-  SILENT_DL="curl -sL"
-  LOUD_DL="curl -O"
+#elif available curl; then
+#  SILENT_DL="curl -sL"
+#  LOUD_DL="curl -O"
 else
   echo "Install wget or curl" >&2
   exit 1
@@ -44,8 +44,14 @@ STAGINGDIR="$TMP/widevine-staging"
 ## Google's current file tends to lie. 4.10.1196.0 is the latest version as of the 6th of December 2018
 ## Feel free to run this script as `$ WIDEVINE_VERSION=4.10.1196.0 ./latest-widevine.sh`
 #WIDEVINE_VERSION="${WIDEVINE_VERSION:-$($SILENT_DL https://dl.google.com/widevine-cdm/current.txt)}"
-wget  -qO- https://dl.google.com/widevine-cdm/versions.txt >/dev/null
-WIDEVINE_VERSION="${WIDEVINE_VERSION:-$(tail -n 1 versions.txt)}"
+
+#[ -f ./versions.txt ] || 
+#wget $UA -qO- https://dl.google.com/widevine-cdm/versions.txt
+# >/dev/null
+#WIDEVINE_VERSION="${WIDEVINE_VERSION:-$(tail -n 1 versions.txt)}"
+#wget $UA -qO- https://dl.google.com/widevine-cdm/versions.txt -0 versions.txt
+WIDEVINE_VERSION="${WIDEVINE_VERSION:-$(wget $UA -qO- https://dl.google.com/widevine-cdm/versions.txt | tail -n 1 )}"
+
 #WIDEVINE_VERSION=4.10.1440.19
 #WIDEVINE_VERSION=4.10.1146.0
 
@@ -69,7 +75,7 @@ if [ -d "$STAGINGDIR" ]; then
 fi
 
 # Stop on any error
-set -eu
+#set -eu
 
 # Make and switch to the staging directory
 mkdir -p "$STAGINGDIR"
@@ -78,9 +84,14 @@ cd "$STAGINGDIR"
 # Now get the latest widevine zip for the users architecture
 $LOUD_DL "https://dl.google.com/widevine-cdm/${WIDEVINE_VERSION}-linux-${WIDEVINE_ARCH}.zip"
 
+
+
 # Extract the contents of Widevine package
 if available unzip; then
-  unzip "${WIDEVINE_VERSION}-linux-${WIDEVINE_ARCH}.zip" libwidevinecdm.so
+ unzip "${WIDEVINE_VERSION}-linux-${WIDEVINE_ARCH}.zip" libwidevinecdm.so
+
+#  read rere 
+
 elif available bsdtar; then
   bsdtar xf "${WIDEVINE_VERSION}-linux-${WIDEVINE_ARCH}.zip" libwidevinecdm.so
 else
