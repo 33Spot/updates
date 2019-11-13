@@ -52,7 +52,7 @@ if [ -r "$PPAPI_FLASH_INSTALL_DIR/manifest.json" ] ; then
 fi
 
 # Now we could screw things up so exit on first error
-set -e
+#set -e
 
 # If the staging directory is already present from the past, clear it down
 # and re-create it.
