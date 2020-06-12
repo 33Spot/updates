@@ -64,14 +64,18 @@ mkdir -p "$STAGINGDIR$PPAPI_FLASH_INSTALL_DIR"
 cd "$STAGINGDIR"
 
 # Now get the tarball
-$LOUD_DL "https://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_ppapi_linux.${ARCH}.tar.gz"
+$LOUD_DL "https://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_ppapi_linux.${ARCH}.tar.gz"  2>&1 | \
+ stdbuf -o0 awk '/[.] +[0-9][0-9]?[0-9]?%/ { print substr($0,63,3) }' | \
+ dialog --gauge "Downloading: $Nazwa" 10 100
 
 # Extract the contents of the Google Chrome binary package
 tar xf flash_player_ppapi_linux.${ARCH}.tar.gz -C "$STAGINGDIR$PPAPI_FLASH_INSTALL_DIR"
 chmod -R u+w,go+r-w,a-s .
 #-----------------------------------------------------------------------------------------------------------
 # Now get the tarball
-$LOUD_DL "https://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_npapi_linux.${ARCH}.tar.gz"
+$LOUD_DL "https://fpdownload.adobe.com/pub/flashplayer/pdc/$VERSION/flash_player_npapi_linux.${ARCH}.tar.gz"  2>&1 | \
+ stdbuf -o0 awk '/[.] +[0-9][0-9]?[0-9]?%/ { print substr($0,63,3) }' | \
+ dialog --gauge "Downloading: $Nazwa" 10 100
 
 # Extract the contents of the Google Chrome binary package
 tar xf flash_player_npapi_linux.${ARCH}.tar.gz -C "$STAGINGDIR$PPAPI_FLASH_INSTALL_DIR"
