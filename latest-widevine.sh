@@ -82,7 +82,9 @@ mkdir -p "$STAGINGDIR"
 cd "$STAGINGDIR"
 
 # Now get the latest widevine zip for the users architecture
-$LOUD_DL "https://dl.google.com/widevine-cdm/${WIDEVINE_VERSION}-linux-${WIDEVINE_ARCH}.zip"
+$LOUD_DL "https://dl.google.com/widevine-cdm/${WIDEVINE_VERSION}-linux-${WIDEVINE_ARCH}.zip"  2>&1 | \
+ stdbuf -o0 awk '/[.] +[0-9][0-9]?[0-9]?%/ { print substr($0,63,3) }' | \
+ dialog --gauge "Downloading: $Nazwa" 10 100
 
 
 
