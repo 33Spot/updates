@@ -4,6 +4,10 @@
 
 #!/bin/bash
 link=https://download.opensuse.org/repositories/home:/hawkeye116477:/waterfox/AppImage/waterfox-classic-latest-x86_64.AppImage.meta4
+wget $link -O $HOME/waterfox.txt
+sed -e '/<file\ name=/!d' -e 's/<file\ name=\"//g' -e 's/.glibc2.*//g' ./waterfox.txt
+pause
+
 
 		Day=`date +%d`
 		UpdateDay=17
