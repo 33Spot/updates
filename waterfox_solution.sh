@@ -47,9 +47,9 @@ zenity \
 		then wersja_o=$(cat $filo) 
 		else wersja_o= 
 		fi
-		if [ -f $file ];
-		then rm -f $file
-		fi
+		#if [ -f $file ]; 
+		#then rm -f $file
+		#fi
 		chmod +x $HOME/waterfox-classic-latest-x86_64.AppImage
 		cd $HOME
 		$HOME/waterfox-classic-latest-x86_64.AppImage
@@ -64,9 +64,9 @@ zenity \
 		then wersja_o=$(cat $filo) 
 		else wersja_o= 
 		fi
-		if [ -f $file ];
-		then rm -f $file
-		fi
+		#if [ -f $file ];
+		#then rm -f $file
+		#fi
 		#touch $HOME/$wersja$rozszerzenie
 		chmod +x $HOME/waterfox-classic-latest-x86_64.AppImage
 		cd $HOME
