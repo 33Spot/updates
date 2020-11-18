@@ -1,8 +1,5 @@
 
 
-#Amanita.esp B63D92D1
-#Fablewind 1.37v.esp 872639D7
-
 #!/bin/bash
 Day=`date +%d`
 UpdateDay=17
