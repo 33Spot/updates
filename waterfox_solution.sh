@@ -24,6 +24,7 @@ fi
 		chmod +x $HOME/waterfox-classic-latest-x86_64.AppImage
 		cd $HOME
 		$HOME/waterfox-classic-latest-x86_64.AppImage
+		#$HOME/waterfox-classic-latest-x86_64.AppImage %u
 		exit 0
 		fi
 
@@ -50,6 +51,7 @@ zenity \
 		chmod +x $HOME/waterfox-classic-latest-x86_64.AppImage
 		cd $HOME
 		$HOME/waterfox-classic-latest-x86_64.AppImage
+		#$HOME/waterfox-classic-latest-x86_64.AppImage %u
 		exit 0
 		fi
 
@@ -67,7 +69,8 @@ zenity \
 		#touch $HOME/$wersja$rozszerzenie
 		chmod +x $HOME/waterfox-classic-latest-x86_64.AppImage
 		cd $HOME
-		$HOME/waterfox-classic-latest-x86_64.AppImage]
+		$HOME/waterfox-classic-latest-x86_64.AppImage
+		#$HOME/waterfox-classic-latest-x86_64.AppImage %u
 		exit 0
 		fi
 		
