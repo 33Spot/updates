@@ -73,4 +73,23 @@ zenity \
 		#$HOME/waterfox-classic-latest-x86_64.AppImage %u
 		exit 0
 		fi
+
+		if [ $wersja_o = $wersja ] && [ ! -f $HOME/waterfox-classic-latest-x86_64.AppImage ];then
+		wget https://download.opensuse.org/repositories/home:/hawkeye116477:/waterfox/AppImage/waterfox-classic-latest-x86_64.AppImage -O $HOME/waterfox-classic-latest-x86_64.AppImage
+		cp -f $file $filo
+		rm -f $file
+		if [ -f $filo ];
+		then wersja_o=$(cat $filo) 
+		else wersja_o= 
+		fi
+		#if [ -f $file ];
+		#then rm -f $file
+		#fi
+		#touch $HOME/$wersja$rozszerzenie
+		chmod +x $HOME/waterfox-classic-latest-x86_64.AppImage
+		cd $HOME
+		$HOME/waterfox-classic-latest-x86_64.AppImage
+		#$HOME/waterfox-classic-latest-x86_64.AppImage %u
+		exit 0
+		fi
 		
