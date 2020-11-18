@@ -56,6 +56,11 @@ zenity \
 		fi
 
 		if [ $wersja_o = $wersja ] && [ ! -f $HOME/waterfox-classic-latest-x86_64.AppImage ];then
+zenity \
+--info \
+--text="<span size=\"xx-large\">Ściągam Waterfoxa</span>\n\nBardzo proszę kliknij OK i poczekaj chwilę i nie otwieraj narazie <b>WATERFOXA</b>." \
+--title="Coffee time" \
+--ok-label="Ok"
 		wget https://download.opensuse.org/repositories/home:/hawkeye116477:/waterfox/AppImage/waterfox-classic-latest-x86_64.AppImage -O $HOME/waterfox-classic-latest-x86_64.AppImage
 		cp -f $file $filo
 		rm -f $file
