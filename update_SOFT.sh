@@ -5,7 +5,7 @@ gdebi=dpkg\ \-\-force-all\ \-i
 url=https://download.xnview.com/XnViewMP-linux-x64.deb
 debpackage=XnViewMP-linux-x64.deb
 package=./$debpackage
-sudo gdebi $package
+sudo $gdebi $package
 if [ ! -f $package ]; then
 (
 wget $url
@@ -24,7 +24,7 @@ fi
 url=https://github.com$(wget -qO- 'https://github.com/FreeTubeApp/FreeTube/releases/latest' | grep "amd64.deb" | sed -e "/span/d" -e "/FreetubeApp/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
 debpackage=${url##*/}
 package=./$debpackage
-sudo gdebi $package
+sudo $gdebi $package
 if [ ! -f $package ]; then
 (
 wget $url
