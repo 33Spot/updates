@@ -23,10 +23,15 @@ tar cfv "$folder_backupu"$(date +%Y%m%d)/chrome_$(date +%Y%m%d-%H_%M_%S).tar.gz 
 
 tar cfv "$folder_backupu"$(date +%Y%m%d)/cinnamon_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".cinnamon" ./
 
+tar cfv "$folder_backupu"$(date +%Y%m%d)/beaker_browser_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/"Beaker Browser" ./
+tar cfv "$folder_backupu"$(date +%Y%m%d)/viper_browser_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/"Vaccarelli" ./
+
 
 
 mkdir ~/.config/jitsi-backup
 mv ~/.config/jitsi-nativefier-* ~/.config/jitsi-backup
+#rename 's/\_backup\_backup//g' jitsi-nativefier*
+
 
 find ~/.config/jitsi-backup/jitsi-nativefier-* -maxdepth 0 -type d > ~/.config/jitsi-backup/p.txt
 
@@ -54,7 +59,7 @@ rm -f ~/.config/jitsi-backup/p.txt
 
 
 
-tar cfv "$folder_backupu"$(date +%Y%m%d)/jitsi-backup_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/jitsi-backup
+tar cfv "$folder_backupu"$(date +%Y%m%d)/jitsi-backup_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/jitsi-backup ./
 
 mv ~/.config/jitsi-backup/jitsi-nativefier-* ~/.config/
 rmdir ~/.config/jitsi-backup
@@ -132,15 +137,12 @@ do
 done < ~/.config/Ferdium/Partitions/p.txt
 
 
-
-
-
 rm -f ~/.config/Ferdium/Partitions/o.txt ~/.config/Ferdium/Partitions/p.txt ~/.config/Ferdium/Partitions/q.txt ~/.config/Ferdium/Partitions/s.txt
 
 
-tar cfv "$folder_backupu"$(date +%Y%m%d)/ferdium_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/Ferdium
-tar cfv "$folder_backupu"$(date +%Y%m%d)/beaker_browser_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/"Beaker Browser" ./
-tar cfv "$folder_backupu"$(date +%Y%m%d)/viper_browser_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/"Vaccarelli" ./
+tar cfv "$folder_backupu"$(date +%Y%m%d)/ferdium_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/Ferdium ./
+
+
 
 #tar cfv "$folder_backupu"$(date +%Y%m%d)/firefoxESR$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/Pulpit/uzytki/firefoxESR ./
 #tar cfv "$folder_backupu"$(date +%Y%m%d)/palemoon$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/Pulpit/uzytki/palemoon ./
