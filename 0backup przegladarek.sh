@@ -7,7 +7,7 @@ mkdir "$folder_backupu"$(date +%Y%m%d)
 tar cfv "$folder_backupu"$(date +%Y%m%d)/FreeTube_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/.config/FreeTube ./
 #tar cfv "$folder_backupu"$(date +%Y%m%d)/KeePassXC_DB_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/*.kdbx ./
 cp ~/Hasła.kdbx "$folder_backupu"$(date +%Y%m%d)/Hasla_$(date +%Y%m%d).kdbx
-cp ~/Pulpit/Hasła.kdbx "$folder_backupu"$(date +%Y%m%d)/Hasła_$(date +%Y%m%d).kdbx
+cp ~/Pulpit/Hasła.kdbx "$folder_backupu"$(date +%Y%m%d)/Hasla__$(date +%Y%m%d).kdbx
 
 tar cfv "$folder_backupu"$(date +%Y%m%d)/mozilla_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".mozilla" ./
 tar cfv "$folder_backupu"$(date +%Y%m%d)/moonchild_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".moonchild productions" ./
