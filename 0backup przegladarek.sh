@@ -26,6 +26,7 @@ tar cfv "$folder_backupu"$(date +%Y%m%d)/cinnamon_$(date +%Y%m%d-%H_%M_%S).tar.g
 tar cfv "$folder_backupu"$(date +%Y%m%d)/beaker_browser_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/"Beaker Browser" ./
 tar cfv "$folder_backupu"$(date +%Y%m%d)/viper_browser_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/"Vaccarelli" ./
 
+tar cfv "$folder_backupu"$(date +%Y%m%d)/tor_browser_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/Pulpit/tor-browser ./
 
 
 mkdir ~/.config/jitsi-backup
