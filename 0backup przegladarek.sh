@@ -49,7 +49,7 @@ find ~/.config/jitsi-backup/jitsi-nativefier-* -maxdepth 0 -type d > ~/.config/j
       echo removing in "$line"
       [ -f "$f" ] && rm "$f"
    done
-   sleep 1 && echo rm -f -v ./$line/Cache/*;
+   #sleep 1 && echo rm -f -v ./$line/Cache/*;
 done < ~/.config/jitsi-backup/p.txt
 
 #pause
@@ -117,7 +117,6 @@ done < ~/.config/Ferdium/Partitions/p.txt
 
 grep -Fvxf q.txt p.txt
 
-#ten odblokowac
 
 while read -r line;
 do
@@ -133,7 +132,13 @@ do
       echo removing in "$line"
       [ -f "$f" ] && rm "$f"
    done
-   sleep 1 && echo rm -f -v ./$line/Cache/*;
+   for f in "$line"/Service\ Worker/CacheStorage/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
+   #sleep 1 && echo rm -f -v ./$line/Cache/*;
 done < ~/.config/Ferdium/Partitions/p.txt
 
 

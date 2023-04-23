@@ -109,6 +109,12 @@ do
       echo removing in "$line"
       [ -f "$f" ] && rm "$f"
    done
+   for f in "$line"/Service\ Worker/CacheStorage/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
    sleep 1 && echo rm -f -v ./$line/Cache/*;
 done < ~/.config/Ferdium/Partitions/p.txt
 
