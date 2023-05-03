@@ -8,4 +8,4 @@ chmod +x winetricks
 #sudo mv -v winetricks /usr/local/bin
 sudo mv -v winetricks /usr/bin
 winetricks --version
-#winetricks
+winetricks
