@@ -6,6 +6,13 @@ sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-bui
 sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
 sudo apt update
 #sudo apt install --install-recommends winehq-stable
+
+pkill wine
+
+sudo apt-mark unhold wine-stable wine-stable-amd64 wine-stable-i386 winehq-stable
+sudo apt remove winehq-stable wine-stable wine-stable-amd64 wine-stable-i386
+
+
 version=8.0.0.0~focal-1
 version=7.22~focal-1
 version=7.0.2~focal-1
