@@ -1,14 +1,17 @@
-
+echo "cache" > ./exclude_file.txt
 
 pkill ferdium
 
 folder_backupu=~/Pulpit/uzytki/update\ przegladarek/BACKUP_FF_PM_
-rm -r "$folder_backupu"$(date +%Y%m%d)
+rm -r "$folder_backupu"$(date +%Y%m%d) 2>/dev/null
 
-mkdir "$folder_backupu"$(date +%Y%m%d)
+mkdir "$folder_backupu"$(date +%Y%m%d) 2>/dev/null
 
 
-tar --exclude='~/.firestorm_x64/cache' -zcfv "$folder_backupu"$(date +%Y%m%d)/firestorm_x64_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".firestorm_x64" ./
+
+rm -r ~/".firestorm_x64"/cache/ 2>/dev/null
+tar cfv "$folder_backupu"$(date +%Y%m%d)/firestorm_x64_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".firestorm_x64"/ ./ 2>/dev/null
+
 
 tar cfv "$folder_backupu"$(date +%Y%m%d)/FreeTube_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/.config/FreeTube ./
 #tar cfv "$folder_backupu"$(date +%Y%m%d)/KeePassXC_DB_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/*.kdbx ./
@@ -43,7 +46,7 @@ mv ~/.config/jitsi-nativefier-* ~/.config/jitsi-backup
 
 find ~/.config/jitsi-backup/jitsi-nativefier-* -maxdepth 0 -type d > ~/.config/jitsi-backup/p.txt
 
-   while read -r line;
+while read -r line;
    do
    for f in "$line"/Cache/*
    do
