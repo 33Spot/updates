@@ -13,7 +13,7 @@ rm -r ~/".firestorm_x64"/cache/ 2>/dev/null
 tar cfv "$folder_backupu"$(date +%Y%m%d)/firestorm_x64_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".firestorm_x64"/ ./ 2>/dev/null
 
 
-tar cfv "$folder_backupu"$(date +%Y%m%d)/FreeTube_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/.config/FreeTube ./
+
 #tar cfv "$folder_backupu"$(date +%Y%m%d)/KeePassXC_DB_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/*.kdbx ./
 cp ~/Hasła.kdbx "$folder_backupu"$(date +%Y%m%d)/Hasla_$(date +%Y%m%d).kdbx
 cp ~/Pulpit/Hasła.kdbx "$folder_backupu"$(date +%Y%m%d)/Hasla__$(date +%Y%m%d).kdbx
@@ -73,15 +73,16 @@ rm -f ~/.config/jitsi-backup/p.txt
 tar cfv "$folder_backupu"$(date +%Y%m%d)/jitsi-backup_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/".config"/jitsi-backup ./
 
 mv ~/.config/jitsi-backup/jitsi-nativefier-* ~/.config/
-rmdir ~/.config/jitsi-backup
+rmdir -r ~/.config/jitsi-backup
 
 
 
-
+tar cfv "$folder_backupu"$(date +%Y%m%d)/FreeTube_$(date +%Y%m%d-%H_%M_%S).tar.gz -C ~/.config/FreeTube ./
 
 
 find ~/.config/Ferdium/Partitions -maxdepth 1 -type d | sed -e 's/\.\///g' -e '/\^./d' -e '/\/$/d' > ~/.config/Ferdium/Partitions/p.txt
 echo ~/.config/Ferdium >> ~/.config/Ferdium/Partitions/p.txt
+echo ~/.config/FreeTube >> ~/.config/Ferdium/Partitions/p.txt
 echo '' > ~/.config/Ferdium/Partitions/q.txt
 
 
@@ -90,10 +91,10 @@ do
    for f in "$line"
    do
       [ -f $line\/Network\ Persistent\ State ] && grep "matrix" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
-      #[ -f $line\/Network\ Persistent\ State ] && grep -r "accounts.google.pl" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
-      [ -f $line\/Network\ Persistent\ State ] && grep -r "web.skype.com" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
-      [ -f $line\/Network\ Persistent\ State ] && grep -r "mastodon.xyz" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
-      [ -f $line\/Network\ Persistent\ State ] && grep -r "tvn24.pl" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "accounts.google.pl" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "web.skype.com" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "mastodon.xyz" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "tvn24.pl" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
       # >> ~/.config/Ferdium/Partitions/q.txt
       #&& echo sed -i 's/\/home\/$USER\/.config\/Ferdium\/Partitions//g'
       #&& pushd $line && grep "#matrix-client.matrix.org" $line\/Network\ Persistent\ State -o && popd
@@ -143,6 +144,12 @@ do
       [ -f "$f" ] && rm "$f"
    done
    for f in "$line"/Service\ Worker/CacheStorage/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
+   for f in "$line"/dashFiles/*
    do
       # if file, delete it
       echo removing in "$line"

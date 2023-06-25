@@ -49,6 +49,7 @@
 
 find ~/.config/Ferdium/Partitions -maxdepth 1 -type d | sed -e 's/\.\///g' -e '/\^./d' -e '/\/$/d' > ~/.config/Ferdium/Partitions/p.txt
 echo ~/.config/Ferdium >> ~/.config/Ferdium/Partitions/p.txt
+echo ~/.config/FreeTube >> ~/.config/Ferdium/Partitions/p.txt
 echo '' > ~/.config/Ferdium/Partitions/q.txt
 
 
@@ -57,9 +58,10 @@ do
    for f in "$line"
    do
       [ -f $line\/Network\ Persistent\ State ] && grep "matrix" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
-      [ -f $line\/Network\ Persistent\ State ] && grep -r "accounts.google.pl" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
-      [ -f $line\/Network\ Persistent\ State ] && grep -r "web.skype.com" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
-      [ -f $line\/Network\ Persistent\ State ] && grep -r "mastodon.xyz" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "accounts.google.pl" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "web.skype.com" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "mastodon.xyz" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
+      [ -f $line\/Network\ Persistent\ State ] && grep "tvn24.pl" $line\/Network\ Persistent\ State -o && echo $line  >> ~/.config/Ferdium/Partitions/q.txt
       # >> ~/.config/Ferdium/Partitions/q.txt
       #&& echo sed -i 's/\/home\/$USER\/.config\/Ferdium\/Partitions//g'
       #&& pushd $line && grep "#matrix-client.matrix.org" $line\/Network\ Persistent\ State -o && popd
@@ -93,7 +95,6 @@ done < ~/.config/Ferdium/Partitions/p.txt
 
 grep -Fvxf q.txt p.txt
 
-#ten odblokowac
 
 while read -r line;
 do
@@ -115,14 +116,18 @@ do
       echo removing in "$line"
       [ -f "$f" ] && rm "$f"
    done
-   sleep 1 && echo rm -f -v ./$line/Cache/*;
+   for f in "$line"/dashFiles/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
+   #sleep 1 && echo rm -f -v ./$line/Cache/*;
 done < ~/.config/Ferdium/Partitions/p.txt
 
 
-
-
-
 rm -f ~/.config/Ferdium/Partitions/o.txt ~/.config/Ferdium/Partitions/p.txt ~/.config/Ferdium/Partitions/q.txt ~/.config/Ferdium/Partitions/s.txt
+
 
 
 
