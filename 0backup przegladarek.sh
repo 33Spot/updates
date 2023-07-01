@@ -129,7 +129,6 @@ done < ~/.config/Ferdium/Partitions/p.txt
 grep -Fvxf q.txt p.txt
 
 
-mv ~/.config/Ferdium/ ~/.config/Ferdium_/
 
 while read -r line;
 do
@@ -157,8 +156,18 @@ do
       echo removing in "$line"
       [ -f "$f" ] && rm "$f"
    done
+done < ~/.config/Ferdium/Partitions/p.txt
 
 
+
+
+
+
+
+mv ~/.config/Ferdium/ ~/.config/Ferdium_/
+
+while read -r line;
+do
 
    for f in "$line"/DawnCache/*
    do
@@ -185,16 +194,15 @@ do
       [ -f "$f" ] && rm "$f"
    done
 
-
-
-
-
-
-
    #sleep 1 && echo rm -f -v ./$line/Cache/*;
 done < ~/.config/Ferdium/Partitions/p.txt
 
 mv ~/.config/Ferdium_/ ~/.config/Ferdium/
+
+
+
+
+
 
 rm -f ~/.config/Ferdium/Partitions/o.txt ~/.config/Ferdium/Partitions/p.txt ~/.config/Ferdium/Partitions/q.txt ~/.config/Ferdium/Partitions/s.txt
 
