@@ -155,6 +155,40 @@ do
       echo removing in "$line"
       [ -f "$f" ] && rm "$f"
    done
+
+
+
+   for f in "$line"/DawnCache/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
+   for f in "$line"/GPUCache/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
+   for f in "$line"/Local\ Storage/leveldb/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
+   for f in "$line"/Session\ Storage/*
+   do
+      # if file, delete it
+      echo removing in "$line"
+      [ -f "$f" ] && rm "$f"
+   done
+
+
+
+
+
+
+
    #sleep 1 && echo rm -f -v ./$line/Cache/*;
 done < ~/.config/Ferdium/Partitions/p.txt
 
