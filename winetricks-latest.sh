@@ -1,3 +1,4 @@
+sudo apt-get install winbind -y
 echo latest version of winetricks is:
 curl --silent --show-error \
 https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks --stderr - \
