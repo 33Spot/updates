@@ -171,9 +171,11 @@ cat /etc/apt/sources.list | perl -ne '$H{$_}++ or print' > /tmp/sources.list && 
 sudo snap refresh
 flatpak uninstall --unused 2>/dev/null
 #pip list --outdated
+pip3 cache purge
+pip3 install --upgrade pip setuptools wheel
 python3 -m pip install --upgrade pip
 pip3 list --outdated --format=freeze 2>/dev/null | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip3 install -U 2>/dev/null
-pip cache purge
+
 
 
 
