@@ -17,6 +17,10 @@ echo FREETUBE: $url_p4
 url_p=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github\.com/ferdium/ferdium-app/releases | grep "releases/expanded" | head -n 1)
 url_5=https://github.com$(wget -qO- $url_p | grep "amd64.deb" | sed -e "/span/d" -e "/ferdium/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
 echo FERDIUM: $url_5
+url_p5=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github\.com/subhra74/xdm/releases | grep "releases/expanded" | head -n 1)
+url_6=https://github.com$(wget -qO- $url_p5 | grep "amd64.deb" | sed -e "/span/d" -e "/xdman/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
+echo XDM: $url_6
+
 echo press enter to download...
 read r
 
@@ -164,6 +168,23 @@ fi
 
 
 
+url_p5=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github\.com/subhra74/xdm/releases | grep "releases/expanded" | head -n 1)
+url=https://github.com$(wget -qO- $url_p5 | grep "amd64.deb" | sed -e "/span/d" -e "/xdman/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
+rm -f index.html
+debpackage=${url##*/}
+package=./$debpackage
+if [ ! -f $package ]; then
+(
+wget --no-check-certificate $url
+echo $password | sudo -S $gdebi $package
+)
+fi
+
+if [ -f $package ]; then
+(
+rm -f $package wget-log
+)
+fi
 
 
 
