@@ -1,0 +1,6 @@
+"xrandr --output VGA1 --rate 60 --mode 1920x1080 --fb 1920x1080 --panning 1920x1080"
+    Control + Shift + F7
+"xdotool getwindowfocus windowkill && pkill wine"
+    Control + Shift + F8
+"/home/spot/Pulpit/SKRYPTY/0_toggle-led.sh"
+    Scroll_Lock

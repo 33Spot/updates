@@ -1,0 +1,2 @@
+"xrandr -s 1 && xrandr -s 0"
+    Control + Shift + F7

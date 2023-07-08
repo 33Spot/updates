@@ -1,0 +1,6 @@
+"xrandr -s 0.0001 && xrandr -s 0"
+    Control + Shift + F7
+"xdotool getwindowfocus windowkill && pkill wine"
+    Control + Shift + F8
+"/home/spot/Pulpit/SKRYPTY/0_toggle-led.sh"
+    Scroll_Lock
