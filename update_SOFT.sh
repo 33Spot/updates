@@ -1,5 +1,5 @@
 
-password=qaz123
+password=
 
 gdebi=dpkg\ \-\-force-all\ \-i
 
