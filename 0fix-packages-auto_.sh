@@ -143,7 +143,7 @@ cat -n "$file" | sort -k2 -k1n  | uniq -f1 | sort -nk1,1 | cut -f2- > "$katalog2
 #cat $file | sort -u > "$katalog2/listy3/$file"
 
 #==> 
-echo qaz123 | sudo -S mv "$katalog2/listy/$file" "$katalog/$file"
+sudo mv "$katalog2/listy/$file" "$katalog/$file"
 
 done
 #==> 
