@@ -1,4 +1,5 @@
-sudo mv /etc/apt/preferences.d/nosnap.pref /etc/apt/preferences.d/nosnap.preff
+#sudo mv /etc/apt/preferences.d/nosnap.pref /etc/apt/preferences.d/nosnap.preff
+sudo rm -f /etc/apt/preferences.d/nosnap.pref
 sudo apt update
 sudo apt install snapd -y
 #sudo snap install gimp
