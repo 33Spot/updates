@@ -168,7 +168,7 @@ cat /etc/apt/sources.list | perl -ne '$H{$_}++ or print' > /tmp/sources.list && 
 #read rr
 
 
-echo "qaz123" | sudo -S snap refresh
+sudo snap refresh
 flatpak uninstall --unused 2>/dev/null
 #pip list --outdated
 #pip3 cache purge
