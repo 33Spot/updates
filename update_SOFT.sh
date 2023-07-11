@@ -1,5 +1,8 @@
 
-password=
+
+
+
+password=qaz123
 
 gdebi=dpkg\ \-\-force-all\ \-i
 
@@ -12,8 +15,12 @@ url_p2=$(curl -s -L http://www.xnview.com/en/xnviewmp/|sed -n -E '/Version/{s/.*
 echo XNVIEW: $url_p2
 url_p3=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://www.torproject.org/download/alpha/ | grep "linux64" | sed '/\.asc/d')
 echo TOR: $url_p3
-url_p4=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github\.com/FreeTubeApp/FreeTube/releases | grep "releases/expanded" | head -n 1)
-echo FREETUBE: $url_p4
+
+url_p4=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github.com/FreeTubeApp/FreeTube-Nightly/releases/ | grep "releases/tag" | tail -n 1)
+url_p4b=$(echo $url_p4 | sed 's/tag/expanded_assets/g')
+url_p4c=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' $url_p4b | grep "_amd64.deb" | tail -n 1)
+echo FREETUBE: $url_p4c
+
 url_p=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github\.com/ferdium/ferdium-app/releases | grep "releases/expanded" | head -n 1)
 url_5=https://github.com$(wget -qO- $url_p | grep "amd64.deb" | sed -e "/span/d" -e "/ferdium/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
 echo FERDIUM: $url_5
@@ -121,9 +128,9 @@ fi
 #read r
 
 #url=https://github.com$(wget -qO- 'https://github.com/FreeTubeApp/FreeTube/releases/latest' | grep "amd64.deb" | sed -e "/span/d" -e "/FreetubeApp/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
-url_p=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github\.com/FreeTubeApp/FreeTube/releases | grep "releases/expanded" | head -n 1)
-url=https://github.com$(wget -qO- $url_p | grep "amd64.deb" | sed -e "/span/d" -e "/FreetubeApp/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
-rm -f index.html
+url_p4=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github.com/FreeTubeApp/FreeTube-Nightly/releases/ | grep "releases/tag" | tail -n 1)
+url_p4b=$(echo $url_p4 | sed 's/tag/expanded_assets/g')
+url=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' $url_p4b | grep "_amd64.deb" | tail -n 1)
 debpackage=${url##*/}
 package=./$debpackage
 if [ ! -f $package ]; then
