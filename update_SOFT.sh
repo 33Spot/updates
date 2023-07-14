@@ -2,7 +2,7 @@
 
 
 
-password=
+password=qaz123
 
 gdebi=dpkg\ \-\-force-all\ \-i
 
@@ -16,7 +16,7 @@ echo XNVIEW: $url_p2
 url_p3=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://www.torproject.org/download/alpha/ | grep "linux64" | sed '/\.asc/d')
 echo TOR: $url_p3
 
-url_p4=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github.com/FreeTubeApp/FreeTube-Nightly/releases/ | grep "releases/tag" | tail -n 1)
+url_p4=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github.com/FreeTubeApp/FreeTube-Nightly/releases/ | grep "releases/tag"  | grep "FTN" | head -n 1)
 url_p4b=$(echo $url_p4 | sed 's/tag/expanded_assets/g')
 url_p4c=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' $url_p4b | grep "_amd64.deb" | tail -n 1)
 echo FREETUBE: $url_p4c
@@ -128,7 +128,7 @@ fi
 #read r
 
 #url=https://github.com$(wget -qO- 'https://github.com/FreeTubeApp/FreeTube/releases/latest' | grep "amd64.deb" | sed -e "/span/d" -e "/FreetubeApp/,/deb/p" | sed -n '/"/!{/\n/{P;b}};s/"/\n/g;D' | head -n 1)
-url_p4=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github.com/FreeTubeApp/FreeTube-Nightly/releases/ | grep "releases/tag" | tail -n 1)
+url_p4=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' https://github.com/FreeTubeApp/FreeTube-Nightly/releases/ | grep "releases/tag"  | grep "FTN" | head -n 1)
 url_p4b=$(echo $url_p4 | sed 's/tag/expanded_assets/g')
 url=$(./xidel -e '(//@href, //@src)/resolve-uri(.)' $url_p4b | grep "_amd64.deb" | tail -n 1)
 debpackage=${url##*/}
