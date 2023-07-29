@@ -2,7 +2,17 @@ sudo apt-get install xbindkeys
 #xbindkeys --defaults > ~/.xbindkeysrc
 #lapanie sskrotow klawiaturowych
 #xbindkeys -k
-cp ./xbindkeysrc ~/.xbindkeysrc
+screen=$(xrandr --listmonitors | grep -v "Monitor" | sed 's/.* //')
+
+#echo "\"xrandr -s 0.0001 && xrandr -s 0\"" > ~/.xbindkeysrc
+echo "\"xrandr --output "$screen" --rate 60 --mode 1920x1080 --fb 1920x1080 --panning 1920x1080\"" > ~/.xbindkeysrc
+echo "    Control + Shift + F7" >> ~/.xbindkeysrc
+echo "\"xdotool getwindowfocus windowkill && pkill wine\"" >> ~/.xbindkeysrc
+echo "    Control + Shift + F8" >> ~/.xbindkeysrc
+echo "\"/home/spot/Pulpit/SKRYPTY/0_toggle-led.sh\"" >> ~/.xbindkeysrc
+echo "    Scroll_Lock" >> ~/.xbindkeysrc
+
+#cp ./xbindkeysrc ~/.xbindkeysrc
 xbindkeys --file ~/.xbindkeysrc
 # gnome-session-properties
 
@@ -31,3 +41,5 @@ xbindkeys --file ~/.xbindkeysrc
 #              Print a default guile configuration file
 #       -fg, --file-guile
 #              Use an alternative guile configuration file
+
+
