@@ -25,18 +25,20 @@ pkill wine
 
 sudo apt-mark unhold wine-stable wine-stable-amd64 wine-stable-i386 winehq-stable wine-devel-amd64 wine
 
-sudo apt remove -y winehq-stable wine-stable wine-stable-amd64 wine-stable-i386
+sudo apt remove -y winehq-stable wine-stable wine-stable-amd64 wine-stable-i386 -y
 
+
+#sudo apt remove wine-stable-amd64 wine-stable-i386
 
 #sudo apt install --install-recommends winehq-stable=7.0.2~focal-1
-sudo apt-get install wine-stable-amd64=7.0.2~focal-1
-sudo apt-get install wine-stable-i386=7.0.2~focal-1
-sudo apt-get install wine-stable=7.0.2~focal-1
-sudo apt-get install winehq-stable=7.0.2~focal-1
+sudo apt-get install wine-stable-amd64=7.0.2~focal-1 -y
+sudo apt-get install wine-stable-i386=7.0.2~focal-1 -y
+sudo apt-get install wine-stable=7.0.2~focal-1 -y
+sudo apt-get install winehq-stable=7.0.2~focal-1 -y
 
 sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386
 
-sudo apt-get install winetricks
+sudo apt-get install winetricks -y
 
 
 
@@ -100,7 +102,7 @@ echo latest version of winetricks is:
 curl --silent --show-error \
 https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks --stderr - \
 | grep ^WINETRICKS_VERSION | cut -d '=' -f 2
-sudo apt-get remove winetricks
+sudo apt-get remove winetricks -y
 wget  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
 chmod +x winetricks 
 sudo mv -v winetricks /usr/bin
