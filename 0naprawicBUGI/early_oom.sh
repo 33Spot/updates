@@ -6,7 +6,8 @@ sudo apt-get install earlyoom
 sudo systemctl unmask earlyoom.service
 sudo systemctl enable --now earlyoom
 sudo systemctl start earlyoom
-systemctl status earlyoom
+#systemctl status earlyoom
+
 
 #sudo systemctl start oomd
 #systemctl status oomd
