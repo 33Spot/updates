@@ -1,0 +1,3 @@
+#!/bin/bash
+#TOR_SKIP_LAUNCH=1 TOR_SOCKS_PORT=9150 TOR_SKIP_CONTROLPORTTEST=1 ./start-tor-browser.desktop
+TOR_SKIP_LAUNCH=1 TOR_SOCKS_PORT=9150 TOR_SKIP_CONTROLPORTTEST=1 flatpak run org.onionshare.OnionShare
