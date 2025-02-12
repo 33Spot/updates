@@ -1,3 +1,4 @@
+sudo apt install coreutils curl grep sed wget sudo
 sudo rm -f /usr/local/bin/am
 sudo rm -f /opt/am/APP-MANAGER
 sudo rm -f /opt/am/APP-MANAGER.*
