@@ -1,3 +1,4 @@
+#https://portable-linux-apps.github.io/apps.html
 sudo apt install coreutils curl grep sed wget sudo
 sudo rm -f /usr/local/bin/am
 sudo rm -f /opt/am/APP-MANAGER
@@ -12,7 +13,11 @@ am -f
 am -u
 am --disable-notifications
 #am nolibfuse freetube
-#am -i libreoffice            	freetube             	onlyoffice             	kdegames               	krita                  	thorium-sse3           	notepad++              	visipics               	celestia-enanched      	ungoogled-chromium     	cloud-browser          	ferdium                	vlc                    	popcorn                	photogimp              	rats-search            	cliniface              	thorium-reader         	yt-dlg                 	librewolf              	opal                   	akuse                  	walc                   	smplayer               	open-video-downloader  	bauh                   	screencloud            	aisleriot              	youtube-download       	rustdesk               	protonup-qt            	stereophotoview        	ff-password-exporter   	celestia               	caesium                	keepassxc              	yt-dlp                 	hugor                  	mpv                    	anydesk                	appimagetool           	btop                   	billard-gl             cpu-x
+
+am -i mercury-sse3 thorium-sse3 gimp notepad++ yt-dlp
+
+
+#am -i libreoffice            	freetube onlyoffice             	kdegames               	krita                  	thorium-sse3           	notepad++              	visipics               	celestia-enanched      	ungoogled-chromium     	cloud-browser          	ferdium                	vlc                    	popcorn                	photogimp              	rats-search            	cliniface              	thorium-reader         	yt-dlg                 	librewolf              	opal                   	akuse                  	walc                   	smplayer               	open-video-downloader  	bauh                   	screencloud            	aisleriot              	youtube-download       	rustdesk               	protonup-qt            	stereophotoview        	ff-password-exporter   	celestia               	caesium                	keepassxc              	yt-dlp                 	hugor                  	mpv                    	anydesk                	appimagetool           	btop                   	billard-gl             
 echo DONE!
 read r
 bash
