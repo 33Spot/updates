@@ -1,7 +1,7 @@
 #!/bin/bash
 # Sklep Portable Linux Apps (Graficzny interfejs dla AM)
 # Funkcje: dokładne listy, graficzne hasło sudo, instalacja/usuwanie, zapamiętuje ostatnią bazę danych
-# Dodatkowo: przenosi "0ad" na początek listy dostępnych programów (jeśli istnieje)
+
 
 KATALOG_KONFIG="$HOME/.config"
 PLIK_KONFIG="$KATALOG_KONFIG/am-store.conf"
