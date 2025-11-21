@@ -5,6 +5,8 @@ link=https://mega.nz/file/ENhGHSjK#qqcDlRy9-DuzD9dP1_od2FN2wbzOKs6cJnAcU64y1c4
 
 wget https://github.com/33Spot/updates/raw/refs/heads/master/unpacker/megatools && chmod +x megatools
 wget https://github.com/33Spot/updates/raw/refs/heads/master/unpacker/fa && chmod +x fa
+
+clear
 ./megatools dl $link
 
 # Function to extract archive and update progress
