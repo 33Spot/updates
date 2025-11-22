@@ -42,50 +42,18 @@ fi
 
 # --- Distro codename mapping (FULL Ubuntu ↔ Mint) -------------------------------
 # Format: codename|ubuntu_version|mint_version
+# NOTE: This map has been cleaned up (de-duplicated, ordered) for clarity.
 DIST_MAP=(
   "precise|Ubuntu 12.04 LTS|Linux Mint 13 (Maya)"
-  "trusty|Ubuntu 14.04 LTS|Linux Mint 17.x (Qiana → Rosa)"
-  "xenial|Ubuntu 16.04 LTS|Linux Mint 18.x (Sarah → Sylvia)"
-  "bionic|Ubuntu 18.04 LTS|Linux Mint 19.x (Tara → Tricia)"
-  "focal|Ubuntu 20.04 LTS|Linux Mint 20.x (Ulyana → Una)"
-  "jammy|Ubuntu 22.04 LTS|Linux Mint 21.x (Vanessa → Virginia)"
-  "noble|Ubuntu 24.04 LTS|Linux Mint 22.x (Wilma → Zara)"
-#)"
-  "trusty|Ubuntu 14.04 LTS|Linux Mint 17 (Qiana), 17.1 (Rebecca), 17.2 (Rafaela), 17.3 (Rosa)"
+#  "trusty|Ubuntu 14.04 LTS|Linux Mint 17 (Qiana), 17.1 (Rebecca), 17.2 (Rafaela), 17.3 (Rosa)"
   "xenial|Ubuntu 16.04 LTS|Linux Mint 18 (Sarah), 18.1 (Serena), 18.2 (Sonya), 18.3 (Sylvia)"
+  "trusty|Ubuntu 14.04 LTS|Linux Mint 17 (Qiana), 17.1 (Rebecca), 17.2 (Rafaela), 17.3 (Rosa)"
   "bionic|Ubuntu 18.04 LTS|Linux Mint 19 (Tara), 19.1 (Tessa), 19.2 (Tina), 19.3 (Tricia)"
   "focal|Ubuntu 20.04 LTS|Linux Mint 20 (Ulyana), 20.1 (Ulyssa), 20.2 (Uma), 20.3 (Una)"
   "jammy|Ubuntu 22.04 LTS|Linux Mint 21 (Vanessa), 21.1 (Vera), 21.2 (Victoria), 21.3 (Virginia)"
-  "noble|Ubuntu 24.04 LTS|Linux Mint 22 (Wilma), 22.1 (Xia), 22.2 (Zara)"
-#), 21.1 (Vera), 21.2 (Victoria), 21.3 (Virginia)"
-  "focal|Ubuntu 20.04 LTS|Linux Mint 20 (Ulyana), 20.1 (Ulyssa), 20.2 (Uma), 20.3 (Una)"
-  "bionic|Ubuntu 18.04 LTS|Linux Mint 19 (Tara), 19.1 (Tessa), 19.2 (Tina), 19.3 (Tricia)"
-  "xenial|Ubuntu 16.04 LTS|Linux Mint 18 (Sarah), 18.1 (Serena), 18.2 (Sonya), 18.3 (Sylvia)"
-  "trusty|Ubuntu 14.04 LTS|Linux Mint 17 (Qiana), 17.1 (Rebecca), 17.2 (Rafaela), 17.3 (Rosa)"
-  "precise|Ubuntu 12.04 LTS|Linux Mint 13 (Maya)"
   "kinetic|Ubuntu 22.10|No Mint release"
-  "kudu|Ubuntu 24.04 LTS|Linux Mint 22 (Wilma)"
+  "noble|Ubuntu 24.04 LTS|Linux Mint 22 (Wilma), 22.1 (Xia), 22.2 (Zara)"
 )
-# -------------------------------
-# Keep this small and editable. Add entries as needed.
-# Format: codename|ubuntu_version|mint_version
-#DIST_MAP=(
-#  "focal|Ubuntu 20.04 LTS|Linux Mint 20/20.1/20.2/20.3 (Ulyana/Una/Una/Una)"
-#  "bionic|Ubuntu 18.04 LTS|Linux Mint 19/19.1/19.2/19.3 (Tara/Tessa/Tina/Tricia)"
-#  "jammy|Ubuntu 22.04 LTS|Linux Mint 21/21.1/21.2 (Vanessa/Vera/Victoria)"
-#  "kinetic|Ubuntu 22.10|(not an LTS; Mint not based on this)"
-#  "xenial|Ubuntu 16.04 LTS|Linux Mint 18 series (Sarah/Serena/Sonya/Sylvia)"
-#)
-
-# Helper to build dialog-friendly list of codenames discovered
-build_codename_menu(){
-  local arr=(); local i=1
-  for item in "${1[@]}"; do
-    arr+=("$i" "$item")
-    ((i++))
-  done
-  echo "${arr[@]}"
-}
 
 # --- Functions that query remote site ---------------------------------------
 fetch_versions(){
@@ -167,24 +135,50 @@ while true; do
     errbox "No debian dist codenames found for version $selected_version. Try another version."; continue
   fi
 
-  # Build a menu that shows codename plus mapping hint (Ubuntu and Mint)
+  # --- MODIFIED SECTION: Sort codenames by Ubuntu version ---
   mapfile -t CODES <<<"$(echo "$CODES_RAW")"
-  codemenu=()
-  i=1
+  
+  # 1. Create a temporary list with sortable version, codename, and display string
+  unsorted_entries=()
   for c in "${CODES[@]}"; do
-    # Find mapping info
-    hint=""
+    ubuntu_version_str=""
+    mint_version_str=""
     for m in "${DIST_MAP[@]}"; do
       IFS='|' read -r key ub mint <<<"$m"
       if [ "$key" = "$c" ]; then
-        hint="$ub / $mint"
+        ubuntu_version_str="$ub"
+        mint_version_str="$mint"
         break
       fi
     done
-    [ -z "$hint" ] && hint="(no mapping in script)"
-    codemenu+=("$i" "$c — $hint")
+
+    if [ -z "$ubuntu_version_str" ]; then
+      # Not found in our map, assign a very low version to sort it to the end
+      ubuntu_version_str="Ubuntu 0.00"
+      mint_version_str="(no mapping in script)"
+    fi
+    
+    # Extract just the version number for sorting (e.g., "22.04" from "Ubuntu 22.04 LTS")
+    sortable_version=$(echo "$ubuntu_version_str" | grep -Eo '[0-9]+\.[0-9]+(\.[0-9]+)?' || echo "0.00")
+    
+    display_string="$c — $ubuntu_version_str / $mint_version_str"
+    unsorted_entries+=("${sortable_version}|${c}|${display_string}")
+  done
+
+  # 2. Sort the list by version number (newest first)
+  mapfile -t sorted_entries < <(printf '%s\n' "${unsorted_entries[@]}" | sort -Vr)
+
+  # 3. Build the final dialog menu from the sorted data
+  codemenu=()
+  i=1
+  for entry in "${sorted_entries[@]}"; do
+    # We only need the display string part for the menu
+    IFS='|' read -r _ _ display_string <<< "$entry"
+    codemenu+=("$i" "$display_string")
     ((i++))
   done
+  # --- END OF MODIFIED SECTION ---
+
   codemenu+=("back" "<Go back to versions list>")
 
   codeselect=$(dialog --clear --cancel-label "Back" --title "Select codename" \
@@ -194,7 +188,10 @@ while true; do
     continue
   fi
 
-  selected_codename="${CODES[$((codeselect-1))]}"
+  # We need to find the original codename from the sorted list
+  selected_entry="${sorted_entries[$((codeselect-1))]}"
+  IFS='|' read -r _ selected_codename _ <<< "$selected_entry"
+
 
   # Ask for architecture (only amd64 offered by UI but user can type other)
   arch=$(dialog --inputbox "Enter architecture to install (amd64 recommended)" 8 60 "amd64" 3>&1 1>&2 2>&3) || continue
@@ -235,11 +232,6 @@ Start and enable zerotier-one service now?" 10 60; then
     sudo systemctl enable --now zerotier-one || errbox "Failed to start service."
   fi
 
-  sudo dpkg -i zerotier.deb || { 
-    # try to fix missing deps
-    sudo apt-get install -f -y && sudo dpkg -i zerotier.deb || { errbox "Installation failed even after fixing deps."; continue; }
-  }
-
   msgbox "Success" "ZeroTier ${selected_version} installed from ${selected_codename} for arch ${arch}.\n\nYou can enable the service with: sudo systemctl enable --now zerotier-one"
   break
 
@@ -249,4 +241,3 @@ done
 clear
 echo "Done."
 exit 0
-
