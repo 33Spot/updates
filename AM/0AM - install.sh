@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #https://portable-linux-apps.github.io/apps.html
 sudo apt install coreutils curl grep sed wget sudo -y
+#sudo pacman -S fuse3 coreutils zenity dialog
+sudo pacman -S coreutils curl grep sed wget sudo
+
+
 sudo rm -f /usr/local/bin/am
 sudo rm -f /opt/am/APP-MANAGER
 sudo rm -f /opt/am/APP-MANAGER.*
