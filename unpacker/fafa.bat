@@ -1,3 +1,3 @@
 fa.exe
-pause
+cmd
 
