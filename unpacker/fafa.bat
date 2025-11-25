@@ -1,0 +1,3 @@
+fa.exe
+pause
+
