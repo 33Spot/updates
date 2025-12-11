@@ -12,3 +12,5 @@ wget https://github.com/33Spot/updates/raw/refs/heads/master/unpacker/fa && chmo
 ./megatools dl $link
 ./fa x "$file" -dp .
 
+# wget https://github.com/33Spot/updates/raw/refs/heads/master/zerotier.sh && chmod +x zerotier.sh && clear
+
