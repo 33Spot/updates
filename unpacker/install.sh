@@ -14,7 +14,7 @@ wget https://github.com/33Spot/updates/raw/refs/heads/master/unpacker/fa && chmo
 
 # wget https://github.com/33Spot/updates/raw/refs/heads/master/zerotier.sh && chmod +x zerotier.sh && clear
 # wget https://github.com/33Spot/updates/raw/refs/heads/master/xidel && chmod +x xidel && clear
-
+# wget https://github.com/33Spot/updates/raw/refs/heads/master/unpacker/'00_wine7.02 install2.sh'  && chmod +x '00_wine7.02 install2.sh' && clear
 
 
 
