@@ -4,6 +4,9 @@
 # Written to be simple, robust, and handle spaces in filenames/paths.
 # Requirements: ./xidel (standalone in current dir or in PATH), aria2c, dialog, sudo, dpkg
 
+megatools
+# https://xff.cz/megatools/builds/builds/
+
 set -euo pipefail
 IFS=$'\n\t'
 
