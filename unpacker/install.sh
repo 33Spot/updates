@@ -10,7 +10,8 @@ wget https://github.com/33Spot/updates/raw/refs/heads/master/unpacker/megatools 
 wget https://github.com/33Spot/updates/raw/refs/heads/master/unpacker/fa && chmod +x fa && clear
 
 ./megatools dl $link
-./fa x "$file" -dp .
+./fa x -dp. "$file"
+#./fa x "$file" -dp .
 
 # wget https://github.com/33Spot/updates/raw/refs/heads/master/zerotier.sh && chmod +x zerotier.sh && clear
 # wget https://github.com/33Spot/updates/raw/refs/heads/master/xidel && chmod +x xidel && clear
