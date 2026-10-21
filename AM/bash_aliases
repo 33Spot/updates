@@ -1,0 +1,50 @@
+
+function lookfor() {
+  am -l --all | grep -i "$1"
+}
+
+function bringme() {
+  am -i "$1" && "$1"
+}
+
+function reinstall() {
+ am -R "$1" && am -i "$1" && "$1"
+}
+
+function uninstall() {
+  pkill "$1" && am -R "$1"
+}
+
+function buildme() {
+  bunster build "$1".sh -o "$1".bin && strip --strip-all "$1".bin && upx --best --ultra-brute "$1".bin 
+}
+
+function compress() {
+  upx --best --ultra-brute "$1"
+}
+
+function starwars() {
+  telnet towel.blinkenlights.nl
+}
+
+# AppImage cleanup function
+cleanup-appimage() {
+    echo "Cleaning up AppImage mounts..."
+    for mount in /tmp/.mount_appima*; do
+        [ -d "$mount" ] && fusermount -u "$mount" 2>/dev/null && echo "Unmounted: $mount"
+    done
+    # Also kill any stuck AppImage processes
+    pkill -f "\.AppImage" 2>/dev/null
+    echo "Done!"
+}
+
+# Alias for quick access
+alias cai='cleanup-appimage'
+
+alias cls='clear'
+alias myip="ip addr show | grep inet"
+alias open='xdg-open .'
+alias shutdown='sudo shutdown -h now'
+alias emptytrash='rm -rf ~/.local/share/Trash/*'
+alias now='date "+%Y-%m-%d %H:%M:%S"'
+
