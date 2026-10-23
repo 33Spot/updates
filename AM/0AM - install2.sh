@@ -33,6 +33,7 @@ sudo ./0AMinstall_i.sh
 rm -f ./0AMinstall_i.sh
 #~/.local/bin
 wget https://github.com/33Spot/updates/raw/refs/heads/master/AM/bash_aliases --output-document=~/.bash_aliases
+source ~/.bashrc
 
 
 
