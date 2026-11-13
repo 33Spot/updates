@@ -93,6 +93,9 @@ OFF|conty_wine_1.28.3_conty283|https://github.com/Kron4ek/Conty/releases/downloa
 ON|conty_wine_1.28.2_conty282|https://github.com/Kron4ek/Conty/releases/download/1.28.2/conty_wine.sh
 OFF|conty_wine_1.28.1_conty281|https://github.com/Kron4ek/Conty/releases/download/1.28.1/conty_wine.sh
 OFF|conty_wine_1.28.0_conty280|https://github.com/Kron4ek/Conty/releases/download/1.28/conty_wine.sh
+OFF|conty_wine_1.27.1_conty271|https://github.com/Kron4ek/Conty/releases/download/1.27.1/conty_wine.sh
+OFF|conty_wine_1.24.2_conty242|https://github.com/Kron4ek/Conty/releases/download/1.24.2/conty_wine.sh
+OFF|conty_wine_1.22_conty220|https://github.com/Kron4ek/Conty/releases/download/1.22/conty_wine.sh
 ON|conty_wine_1.21.9_conty219|https://github.com/Kron4ek/Conty/releases/download/1.21.9/conty_wine.sh
 ON|conty_wine_1.21.10_conty2110|https://github.com/Kron4ek/Conty/releases/download/1.21.10/conty_wine.sh
 EOF
